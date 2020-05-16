@@ -1,0 +1,33 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.mapContainer {
+  width: 0;
+}
+
+.usersOnlineContainer {
+}
+
+.center {
+  justify-content: center;
+}
+
+.usersOnline {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.usersOnline img {
+  width: 100%;
+  height: 150px;
+}
+
+.usersOnline #circle {
+  width: 20px;
+  height: 20px;
+  background: greenyellow;
+  border-radius: 50%;
+}
