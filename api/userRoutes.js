@@ -17,7 +17,16 @@ router.get('/', (req, res) => {
 
 // Get Single User by ID
 router.get('/:id', (req, res) => {
-    res.send('user with id ' + req.params.id);
+    User.findOne({
+        where: {
+            id: req.params.id,
+        },
+    }).then(user => {
+        res.json(user);
+    }).catch(err => {
+        console.log(err);
+        res.send(err);
+    });
 });
 
 // Create a user
