@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserTile from "./UserTile/UserTile";
 import data from "../../assets/Data.json";
-import { UseContext } from "../../UseContext";
+import { userContext } from "../../userContext";
 const UserTiles = () => {
-  let msg = useContext(UseContext);
+  let msg = useContext(userContext);
 
   useEffect(() => {
     setData(data);
