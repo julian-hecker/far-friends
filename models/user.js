@@ -27,9 +27,6 @@ const User = sequelize.define(
                 isEmail: {
                     msg: "Must be a valid email address.",
                 },
-                notEmpty: {
-                    msg: "Email must not be empty.",
-                },
                 notNull: {
                     msg: "Please enter your email address.",
                 },
@@ -62,20 +59,6 @@ const User = sequelize.define(
                 // length: <=31
             },
         },
-        gender: {
-            type: DataTypes.ENUM,
-            values: ["male", "female"],
-            allowNull: false,
-            validation: {
-                notIn: {
-                    args: [["male", "female"]],
-                    msg: "Select either 'male' or 'female' (sorry)",
-                },
-                notNull: {
-                    msg: "Please select your gender",
-                },
-            },
-        },
         country: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -89,6 +72,10 @@ const User = sequelize.define(
         bio: {
             type: DataTypes.STRING,
             // length: <= 65535
+        },
+        gender: {
+            type: DataTypes.ENUM,
+            values: ["male", "female"],
         },
         onlineStatus: {
             type: DataTypes.ENUM,

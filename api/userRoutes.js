@@ -22,12 +22,12 @@ router.get('/:id', (req, res) => {
 
 // Create a user
 router.post('/', (req, res) => {
-    console.log(req.body);
+    console.log(req.body, req.headers);
     const data = req.body;
     let { userName, firstName, lastName, email, gender, country } = data;
 
     User.create({
-        userName, 
+        userName,
         firstName,
         lastName,
         email,

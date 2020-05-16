@@ -7,8 +7,7 @@ const express = require("express"),
 // App Config
 const app = express();
 const db = require("./db.js");
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({ type: "application/*+json" }));
+app.use(express.json());
 app.set("view engine", "html");
 app.use(express.static(__dirname + "/build"));
 app.set("views", __dirname + "/build");
