@@ -1,13 +1,37 @@
-const Sequelize = require("sequelize");
-const connectionURI = process.env.CLEARDB_DATABASE_URL;
+User = require('../models/user.js');
 
-const db = new Sequelize(connectionURI, {
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000,
-    },
-});
 
-module.exports = db;
+module.exports.getUsers = (req, res) => {
+    User.findAll()
+        .then(users => {
+            res.status(200).json(users);
+        })
+        .catch(err => {
+            console.err(err);
+        });
+}
+
+
+module.exports.getUser = (req, res) => {
+    User.findOne({
+        where: {
+            id: req.body.id,
+        }
+    })
+    .then(user => {
+        res.status(200).json(user);
+    })
+    .catch(err => {
+        console.err(err);
+    });
+}
+
+
+module.exports.createUser = (req, res) => {
+    User.create(req.body)
+        .then(user => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.err(err);
+        });
+}
