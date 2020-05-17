@@ -78,6 +78,15 @@ const User = sequelize.define(
         },
       },
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validation: {
+        notNull: {
+          msg: "Please enter your password",
+        },
+      },
+    },
     bio: {
       type: DataTypes.STRING,
       // length: <= 65535
