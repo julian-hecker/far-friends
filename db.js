@@ -42,7 +42,7 @@ module.exports.filterUsers = (req, res) => {
 
 
 module.exports.getUser = (req, res) => {
-    User.findOn({
+    User.findOne({
         where: {
             id: req.query.id,
         }
