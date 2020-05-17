@@ -59,7 +59,7 @@ module.exports.getUserById = (req, res) => {
 
 const bcrypt = require('bcrypt');
 module.exports.createUser = (req, res) => {
-    const hash = bcrypt.hashSync(req.body.password);
+    const hash = bcrypt.hashSync(req.body.password, 10);
     req.body.password = hash;
     User.create(req.body)
         .then(user => {

@@ -14,12 +14,14 @@ router.post("/", (req, res) => {
     },
   })
     .then((user) => {
-      if (bcrypt.compareSync(req.body.password, user.password)) {
-        res.json(user);
-      } else {
-        res.status(401);
-        res.send('wrong credentials');
-      }
+      (bcrypt.compareSync(req.body.password, user.password, (err, result) => {
+        if (result) {
+          res.json(user);
+        } else {
+          res.status(401);
+          res.send("wrong credentials");
+        }
+      }));
     })
     .catch((err) => {
       res.send(err);
