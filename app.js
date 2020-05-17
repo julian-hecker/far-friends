@@ -17,7 +17,7 @@ passport.deserializeUser((user, cb) => {
 
 // === App Config ===
 const app = express();
-app.use(require('cors'));
+// app.use(require('cors'));
 app.use(passport.initialize());
 
 app.use(express.urlencoded({ extended: false }));
