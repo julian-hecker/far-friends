@@ -2,6 +2,19 @@ const { Op } = require('sequelize');
 User = require('./models/user.js');
 
 
+function filterSearchKeys(filters) { 
+    filtObj = {}; 
+    for(let [k, v] in Object.entries(filters)) {
+        if(v != '' && (k != 'minAge' || k != 'maxAge')) {
+           filtObj[k] = v; 
+        }
+    }
+    filtObj['age'] = {[Op.and]: [filters.minAge, filters.maxAge]}; 
+    return filtObj;
+} 
+
+
+
 module.exports.getUsers = (req, res) => {
     User.findAll()
         .then(users => {
@@ -14,25 +27,10 @@ module.exports.getUsers = (req, res) => {
 
 
 module.exports.filterUsers = (req, res) => {
-    // filters:
-        // userName
-        // minAge 
-        // maxAge 
-        // gender
-        // location
-        // language
-        // other
-    console.log(req.query);
-
-
-    // we need to create an object that goes into `where` parameter.
-    // `where` has all the checks that the model makes against the database
-    // 
+    let filts = filterSearchKeys(req.query); 
 
     User.findAll({
-        where: {
-            userName: req.query.userName,
-        }
+        where: filts,
     })
     .then(users => {
         res.status(200).json(users);
@@ -44,9 +42,9 @@ module.exports.filterUsers = (req, res) => {
 
 
 module.exports.getUser = (req, res) => {
-    User.findOne({
+    User.findOn({
         where: {
-            id: req.body.id,
+            id: req.query.id,
         }
     })
     .then(user => {
