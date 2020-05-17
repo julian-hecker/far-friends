@@ -27,6 +27,7 @@ module.exports.getUsers = (req, res) => {
 
 
 module.exports.filterUsers = (req, res) => {
+    console.log(req.query);
     let filts = filterSearchKeys(req.query); 
     console.log(filts);
 
