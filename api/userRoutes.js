@@ -1,14 +1,17 @@
 const { Router } = require('express');
 const router = new Router(); 
 
-
-db = require('../db.js');
+const db = require('../db.js');
 
 // Get All Users
 router.get('/', (req, res) => {
     db.getUsers(req, res);
 });
 
+// Search for users
+router.get('/search', (req, res) => {
+    db.filterUsers(req, res);
+});
 
 // Get Single User by ID
 router.get('/:id', (req, res) => {
@@ -18,7 +21,7 @@ router.get('/:id', (req, res) => {
 // Create a user
 router.post('/', (req, res) => {
     db.createUser(req, res);
-})
+});
 
 
 

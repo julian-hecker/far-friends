@@ -8,8 +8,38 @@ module.exports.getUsers = (req, res) => {
             res.status(200).json(users);
         })
         .catch(err => {
-            console.err(err);
+            console.error(err);
         });
+}
+
+
+module.exports.filterUsers = (req, res) => {
+    // filters:
+        // userName
+        // minAge 
+        // maxAge 
+        // gender
+        // location
+        // language
+        // other
+    console.log(req.query);
+
+
+    // we need to create an object that goes into `where` parameter.
+    // `where` has all the checks that the model makes against the database
+    // 
+
+    User.findAll({
+        where: {
+            userName: req.query.userName,
+        }
+    })
+    .then(users => {
+        res.status(200).json(users);
+    })
+    .catch(err => {
+        console.error(err);
+    })
 }
 
 
@@ -23,7 +53,7 @@ module.exports.getUser = (req, res) => {
         res.status(200).json(user);
     })
     .catch(err => {
-        console.err(err);
+        console.error(err);
     });
 }
 
@@ -33,27 +63,6 @@ module.exports.createUser = (req, res) => {
         .then(user => {
             res.sendStatus(200);
         }).catch(err => {
-            console.err(err);
+            console.error(err);
         });
 }
-
-
-module.exports.filterUsers = (req, res) => {
-    //filters
-    userName
-    minAge 
-    maxAge 
-    gender
-    location
-    language
-    other
-    User.findAll({
-
-    })
-    .then(users => {
-        res.status(200).json(users);
-    })
-    .catch(err => {
-        console.err(err);
-    })
-} 
