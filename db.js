@@ -28,6 +28,7 @@ module.exports.getUsers = (req, res) => {
 
 module.exports.filterUsers = (req, res) => {
     let filts = filterSearchKeys(req.query); 
+    console.log(filts);
 
     User.findAll({
         where: filts,
@@ -44,7 +45,7 @@ module.exports.filterUsers = (req, res) => {
 module.exports.getUser = (req, res) => {
     User.findOne({
         where: {
-            id: req.query.id,
+            id: req.params.id,
         }
     })
     .then(user => {
