@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 User = require('./models/user.js');
 
 
@@ -35,3 +36,24 @@ module.exports.createUser = (req, res) => {
             console.err(err);
         });
 }
+
+
+module.exports.filterUsers = (req, res) => {
+    //filters
+    userName
+    minAge 
+    maxAge 
+    gender
+    location
+    language
+    other
+    User.findAll({
+
+    })
+    .then(users => {
+        res.status(200).json(users);
+    })
+    .catch(err => {
+        console.err(err);
+    })
+} 
