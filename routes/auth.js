@@ -15,6 +15,7 @@ router.post("/", (req, res) => {
   })
     .then((user) => {
       if (bcrypt.compareSync(req.body.password, user.password)) {
+        // update lastLoggedin field
         res.send(user);
       } else {
         res.sendStatus(401);
