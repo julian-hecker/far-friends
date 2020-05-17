@@ -21,19 +21,19 @@ app.use(require('cors'));
 app.use(passport.initialize());
 
 app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
+app.use(express.json());
 app.set("view engine", "html");
 app.use(express.static(__dirname + "/build"));
 app.set("views", __dirname + "/build");
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "*");
-//   if (req.method === "OPTIONS") {
-//     res.header("Access-Control-Allow-Methods", "*");
-//     return res.status(200).json({});
-//   }
-//   next();
-// });
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "*");
+    return res.status(200).json({});
+  }
+  next();
+});
 
 // === Routes ===
 app.use("/api/auth", require("./routes/auth.js"));
