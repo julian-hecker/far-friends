@@ -4,7 +4,7 @@ User = require('./models/user.js');
 
 function filterSearchKeys(filters) { 
     filtObj = {}; 
-    for(let [k, v] in Object.entries(filters)) {
+    for(let [k, v] of Object.entries(filters)) {
         if(v != '' && (k != 'minAge' || k != 'maxAge')) {
            filtObj[k] = v; 
         }
