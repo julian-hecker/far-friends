@@ -1,13 +1,15 @@
 // === Packages ===
 const express = require("express"),
     bodyParser = require("body-parser"),
+    cors = require('cors'),
     passport = require("passport"),
     LocalStrategy = require("passport-local");
 
 // App Config
 const app = express();
 const db = require("./db.js");
-app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
 app.set("view engine", "html");
 app.use(express.static(__dirname + "/build"));
 app.set("views", __dirname + "/build");
