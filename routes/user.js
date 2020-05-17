@@ -15,7 +15,7 @@ router.get('/search', (req, res) => {
 
 // Get Single User by ID
 router.get('/:id', (req, res) => {
-    db.getUser(req, res); 
+    db.getUserById(req, res); 
 });
 
 // Create a user

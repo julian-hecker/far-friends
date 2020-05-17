@@ -2,18 +2,6 @@ const { Op } = require('sequelize');
 User = require('../models/user.js');
 
 
-function filterSearchKeys(obj) { 
-    filtObj = {}; 
-    for(let key in obj) {
-        if(obj[key] != '' && (key != 'minAge' && key != 'maxAge')) {
-           filtObj[key] = obj[key]; 
-        }
-    }
-    filtObj['age'] = {[Op.between]: [Number(obj.minAge), Number(obj.maxAge)]}; 
-    return filtObj;
-} 
-
-
 
 module.exports.getUsers = (req, res) => {
     User.findAll()
@@ -24,6 +12,18 @@ module.exports.getUsers = (req, res) => {
             console.error(err);
         });
 }
+
+
+function filterSearchKeys(obj) { 
+    filtObj = {}; 
+    for(let key in obj) {
+        if(obj[key] != '' && (key != 'minAge' && key != 'maxAge')) {
+           filtObj[key] = obj[key]; 
+        }
+    }
+    filtObj['age'] = {[Op.between]: [Number(obj.minAge), Number(obj.maxAge)]}; 
+    return filtObj;
+} 
 
 
 module.exports.filterUsers = (req, res) => {
@@ -43,7 +43,7 @@ module.exports.filterUsers = (req, res) => {
 }
 
 
-module.exports.getUser = (req, res) => {
+module.exports.getUserById = (req, res) => {
     User.findOne({
         where: {
             id: req.params.id,
@@ -57,9 +57,10 @@ module.exports.getUser = (req, res) => {
     });
 }
 
-
+const bcrypt = require('bcrypt');
 module.exports.createUser = (req, res) => {
-    console.log("=== REQ BODY ===\n" + req.body);
+    const hash = bcrypt.hashSync(req.body.password);
+    req.body.password = hash;
     User.create(req.body)
         .then(user => {
             res.sendStatus(200);
