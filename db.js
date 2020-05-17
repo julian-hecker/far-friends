@@ -9,7 +9,7 @@ function filterSearchKeys(obj) {
            filtObj[key] = obj[key]; 
         }
     }
-    filtObj['age'] = {[Op.and]: [obj.minAge, obj.maxAge]}; 
+    filtObj['age'] = {[Op.between]: [Number(obj.minAge), Number(obj.maxAge)]}; 
     return filtObj;
 } 
 
