@@ -59,6 +59,7 @@ module.exports.getUser = (req, res) => {
 
 
 module.exports.createUser = (req, res) => {
+    console.log("=== REQ BODY ===\n" + req.body);
     User.create(req.body)
         .then(user => {
             res.sendStatus(200);
