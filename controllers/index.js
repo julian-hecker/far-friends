@@ -1,12 +1,11 @@
 const { Op } = require('sequelize');
-User = require('./models/user.js');
+User = require('../models/user.js');
 
 
 function filterSearchKeys(obj) { 
     filtObj = {}; 
     for(let key in obj) {
-        console.log(key);
-        if(obj[key] != '' && (!(key == 'minAge' || key == 'maxAge'))) {
+        if(obj[key] != '' && (key != 'minAge' && key != 'maxAge')) {
            filtObj[key] = obj[key]; 
         }
     }

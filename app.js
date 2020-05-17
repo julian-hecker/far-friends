@@ -37,7 +37,8 @@ app.use((req, res, next) => {
 });
 
 // === Routes ===
-app.use("/api/users", require("./api/userRoutes.js"));
+app.use("/api/auth", require("./routes/auth.js"));
+app.use("/api/users", require("./routes/user.js"));
 app.get("*", (req, res) => {
     res.render("index.html");
 });

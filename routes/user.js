@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = new Router(); 
 
-const db = require('../db.js');
+const db = require('../controllers/index.js');
 
 // Get All Users
 router.get('/', (req, res) => {
